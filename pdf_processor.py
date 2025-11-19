@@ -2,7 +2,7 @@
 PDF 파일을 처리하고 Pinecone에 업로드하는 모듈
 """
 import os
-import PyPDF2
+import pypdf
 from pinecone import Pinecone
 from dotenv import load_dotenv
 from typing import List
@@ -20,7 +20,7 @@ def extract_text_from_pdf(pdf_path: str) -> str:
     text = ""
     try:
         with open(pdf_path, 'rb') as file:
-            pdf_reader = PyPDF2.PdfReader(file)
+            pdf_reader = pypdf.PdfReader(file)
             for page in pdf_reader.pages:
                 text += page.extract_text() + "\n"
     except Exception as e:
